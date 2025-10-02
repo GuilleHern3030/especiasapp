@@ -1,4 +1,5 @@
 import { useContext, useEffect } from 'react'
+import { basename } from './data/routes.json'
 import './App.css'
 
 // Context
@@ -14,7 +15,7 @@ function App() {
   useEffect( () => {
     const fetchData = async () => {
       try {
-        const csvURL = await fetch("/data/data.json")
+        const csvURL = await fetch(`${basename}/data/data.json`)
           .then(res => res.json())
           .then(json => json.csv)
         await fetch(csvURL)
