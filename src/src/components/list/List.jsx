@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState, useContext } from "react";
+import { useLayoutEffect, useState, useContext, useEffect } from "react";
 import { columnwidth } from "../../data/references.json"
 import { ArticlesContext } from "../../context/ArticlesContext"
 
@@ -11,9 +11,18 @@ export default function ListManager() {
   const isBigger = useIsTableBigger(elements)
   
   return <div>
-    { isBigger ? 
-      <List elements={elements}/> :
-      <Table elements={elements}/> 
+    {
+      elements === null ?
+        <div>
+          <p>No hay datos</p>
+        </div>
+      : elements === undefined ?
+        <div>
+          <p>Cargando...</p>
+        </div> 
+      : isBigger ? 
+        <List elements={elements}/> :
+        <Table elements={elements}/> 
     }
   </div>
 }

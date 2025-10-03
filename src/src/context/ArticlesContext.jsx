@@ -6,6 +6,7 @@ export const ArticlesContext = createContext();
 export function ArticlesContextProvider(props) {
 
     const [elements, setElements] = useState()
+    const [articles, setArticles] = useState()
 
     const processCSV = (csv) => {
         const elements = readElements(csv);
@@ -17,7 +18,7 @@ export function ArticlesContextProvider(props) {
         <ArticlesContext.Provider
             value = {
                 {
-                    elements, processCSV
+                    elements, processCSV, setArticles
                 }
             }
         >

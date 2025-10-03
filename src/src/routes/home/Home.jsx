@@ -32,6 +32,8 @@ export default function Home() {
 
         <ArticlesList/>
 
+        <div style={{paddingTop:'16vw'}} />
+
         <Footer color='#000' backgroundColor='#b2afafff' copyrigth='Webpage created by GuilleNH' copyrightHref={credits}/>
 
 

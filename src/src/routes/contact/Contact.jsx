@@ -6,6 +6,7 @@ import Footer from '../../components/footer/Footer';
 
 import whtasappIcon from '../../assets/icons/whatsapp-icon.webp';
 
+import logo from '../../assets/images/logo.png'
 import styles from "./Contact.module.css";
 
 import { contactLink, title, contactForm, email } from "../../data/client-info.json";
@@ -35,6 +36,10 @@ export default function Contact() {
             <Link to="/about"> Nosotros </Link>
             <Link to="/contact"> Contacto </Link>
         </Header>
+
+        <div className={styles.logo}>
+            <img src={logo}/>
+        </div>
    
         <div className={styles.contact}>
             <p className={styles.instructions}>Hola! Muchas gracias por visitarnos.</p>
@@ -46,6 +51,10 @@ export default function Contact() {
                     <img src={whtasappIcon} alt="Whatsapp"/>
                 </div>
             </div>
+
+            <br/>
+
+            <p className={styles.instructions}>O bien, visitarnos en nuestras redes sociales.</p>
             
         </div>
 

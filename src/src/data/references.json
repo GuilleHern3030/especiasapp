@@ -1,5 +1,6 @@
 {
     "basename": "/especiasapp/",
+    "data_uri": "/data/data.json",
     "priceundefined": "consultar",
     "columnwidth": 72,
     "credits": "https://guillenh.com"

@@ -43,6 +43,7 @@ const getRows = (content, columns) => {
 }
 
 export const readElements = (csv) => {
+    console.log("Reading elements")
     
     const content = csv.split(NEWLINE);
     const headers = getArrayLine((content).shift());
