@@ -1,37 +1,15 @@
-import { useContext, useEffect } from 'react'
-import { basename } from './data/routes.json'
+import { RouterProvider } from 'react-router-dom'
+import { basename } from './data/references.json'
 import './App.css'
 
-// Context
-import { ArticlesContext } from './context/ArticlesContext'
+import useCSV from './hooks/useCSV'
+import useRoutes from './hooks/useRoutes'
 
-// Routes
-import Home from './routes/home/Home'
+export default function App() {
 
-function App() {
+  useCSV(`${basename}/data/data.json`)
 
-  const { setCSV } = useContext(ArticlesContext)
+  const routes = useRoutes()
 
-  useEffect( () => {
-    const fetchData = async () => {
-      try {
-        const csvURL = await fetch(`${basename}/data/data.json`)
-          .then(res => res.json())
-          .then(json => json.csv)
-        await fetch(csvURL)
-        .then(res => res.text())
-        .then(csv => setCSV(csv))
-      } catch (e) {
-        setCSV(null);
-        console.error(e);
-      }
-    }
-    fetchData();
-  }, []);
-
-  return (
-    <Home/>
-  )
+  return <RouterProvider router={routes}/>
 }
-
-export default App

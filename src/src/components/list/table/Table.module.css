@@ -1,0 +1,65 @@
+.table {
+    display: grid;
+    padding: 3vw;
+    /* grid-template-columns: repeat(5, 150px); */
+}
+
+.headercell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
+}
+
+.header {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.celltext {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 3px 4px;
+}
+
+.cell {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border: 2px solid black;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.table p {
+    user-select: none;
+    font-size: 12vw;
+}
+
+@media only screen and (min-width: 360px) {
+    .table p {
+        font-size: 12px;
+    }
+}
+
+@media only screen and (min-width: 480px) {
+    .table p {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .table p {
+        font-size: 17px;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .table p {
+        font-size: 20px;
+    }
+}

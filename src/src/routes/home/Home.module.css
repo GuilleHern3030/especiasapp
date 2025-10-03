@@ -1,0 +1,40 @@
+:root {
+    --img-width: 60vw;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.logo img {
+    user-select: none;
+    width: var(--img-width);
+}
+
+
+@media only screen and (min-width: 360px) {
+    :root {
+        --img-width: 50vw
+    }
+}
+
+@media only screen and (min-width: 480px) {
+    :root {
+        --img-width: 40vw
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    :root {
+        --img-width: 400px
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    :root {
+        --img-width: 450px
+    }
+}

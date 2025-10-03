@@ -1,0 +1,51 @@
+.list {
+    display: flex;
+    flex-direction: column;
+    margin: 2vw;
+}
+
+.element_container {
+    margin-bottom: 1.3rem;
+}
+
+.element_container p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.element_name {
+    font-weight: bold;
+}
+
+.element_prices {
+    margin-left: 3rem;
+}
+
+.list p {
+    user-select: none;
+    font-size: 6vw;
+}
+
+@media only screen and (min-width: 360px) {
+    .list p {
+        font-size: 11px;
+    }
+}
+
+@media only screen and (min-width: 480px) {
+    .list p {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .list p {
+        font-size: 17px;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .list p {
+        font-size: 20px;
+    }
+}
