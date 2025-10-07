@@ -1,7 +1,3 @@
-import { useContext, useEffect } from 'react'
-import { ArticlesContext } from '../context/ArticlesContext'
-import { data_uri, basename } from '../data/references.json'
-
 // Constants
 const NEWLINE = "\n";
 const ELEMENT_CONTAINER = '"';
@@ -11,13 +7,6 @@ const errManager = err => {
   console.error(err)
   return null;
 }
-
-// Gets the GoogleSheets link from /data/data.json
-const getGoogleSheetsLink = async (uri) =>
-  fetch(uri)
-    .then(res => res.json())
-    .then(json => json.googlesheets)
-    .catch(err => errManager("Invalid Data.json uri?\n" + err))
 
 // Gets the GoogleSheets information in CSV format
 const getCSV = async (url) => {
@@ -78,7 +67,6 @@ const getArticlesFromCSV = csv => {
     } : null
   }
 
-
   const get = (row) => {
     return row >= 0 && row < rows.length ?
     {
@@ -110,28 +98,10 @@ const getArticlesFromCSV = csv => {
   };
 }
 
-export default function useArticles() {
-  const { setArticles } = useContext(ArticlesContext)
-  useEffect( () => {
-
-    const processData = async (href) => {
-      console.clear();
-
-      console.log("Getting GoogleSheets link from " + href)
-      const googleLink = await getGoogleSheetsLink(href)
-      console.log("Obtained: " + googleLink)
-
-      console.log("Getting CSV from GoogleSheet link")
-      const csv = await getCSV(googleLink)
-      console.log("Obtained:\n" + csv)
-
-      const articles = getArticlesFromCSV(csv);
-      console.warn(articles)
-
-      setArticles(articles)
-
-    }
-
-    processData(basename+data_uri);
-  }, []);
+export default async function useGoogleSheets(link) {
+  try {
+    const csv = await getCSV(link)
+    const articles = getArticlesFromCSV(csv)
+    return articles;
+  } catch (err) { return null; }
 }

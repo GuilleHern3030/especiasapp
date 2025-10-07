@@ -1,40 +1,42 @@
-import { useLayoutEffect, useState, useContext, useEffect } from "react";
-import { columnwidth } from "../../data/references.json"
-import { ArticlesContext } from "../../context/ArticlesContext"
+import { useEffect, useLayoutEffect, useState } from "react";
+import { columnwidth } from "../../../data/references.json"
+import useTable from "../../../hooks/useTables";
 
 import List from "./list/List"
-import Table from "./table/Table"
+import Rows from "./rows/Rows"
 
 export default function ListManager() {
-  const { elements } = useContext(ArticlesContext)
 
-  const isBigger = useIsTableBigger(elements)
+  const { table } = useTable()
+
+  
+  const isBigger = useIsTableBigger(table)
   
   return <div>
     {
-      elements === null ?
+      table === null ?
         <div>
           <p>No hay datos</p>
         </div>
-      : elements === undefined ?
+      : table === undefined ?
         <div>
           <p>Cargando...</p>
         </div> 
       : isBigger ? 
-        <List elements={elements}/> :
-        <Table elements={elements}/> 
+        <List elements={table}/> :
+        <Rows elements={table}/> 
     }
   </div>
 }
 
 
-const useIsTableBigger = (elements) => {
+const useIsTableBigger = table => {
   const [isBigger, setIsBigger] = useState(false);
 
   useLayoutEffect(() => {
     const check = () => {
       try {
-        const columnWidth = elements.columns * columnwidth;
+        const columnWidth = table.columns.length * columnwidth;
         const screenWidth = window.innerWidth;
         const isBigger = columnWidth > screenWidth;
         //console.log(columnWidth + " < " + screenWidth)
@@ -51,7 +53,7 @@ const useIsTableBigger = (elements) => {
       window.removeEventListener("resize", check);
       window.removeEventListener("load", check);
     };
-  }, [elements])
+  }, [table])
 
   return isBigger;
 }

@@ -1,6 +1,11 @@
 .table {
     display: grid;
-    padding: 3vw;
+    margin-top: 3rem;
+    border: 1px solid black;
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: auto;
+    background-color: rgb(247, 247, 246);
     /* grid-template-columns: repeat(5, 150px); */
 }
 
@@ -8,7 +13,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid black;
+    background-color: rgb(171, 166, 119);
+    border: 1px solid black;
 }
 
 .header {
@@ -28,7 +34,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    border: 2px solid black;
+    border: 1px solid black;
     margin-top: 0;
     margin-bottom: 0;
     padding-left: 2px;
@@ -37,7 +43,7 @@
 
 .table p {
     user-select: none;
-    font-size: 12vw;
+    font-size: 4vw;
 }
 
 @media only screen and (min-width: 360px) {
@@ -48,7 +54,7 @@
 
 @media only screen and (min-width: 480px) {
     .table p {
-        font-size: 14px;
+        font-size: 16px;
     }
 }
 

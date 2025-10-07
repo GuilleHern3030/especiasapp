@@ -27,6 +27,10 @@
     display: inline-block;
 }
 
+.emaillink {
+    text-decoration: none;
+}
+
 .wame img {
     height: 32vw;
     width: 32vw;

@@ -3,11 +3,15 @@ import instagramIcon from "../../assets/icons/instagram-icon.webp";
 import threadsIcon from "../../assets/icons/threads-icon.webp";
 import twitterIcon from "../../assets/icons/twitter-icon.webp";
 
-import data from "../../data/client-info.json";
+import useData from "../../hooks/useData"
 
 import styles from './Footer.module.css';
 
 export default function Footer({children, copyrigth, color="#e8e8e8", backgroundColor="#3f3e3ec3", useStoredData=true, copyrightHref=undefined}) {
+
+    const data = useData()
+
+    if (data == undefined) return null;
 
     if (children !== undefined) 
         return (
@@ -36,7 +40,7 @@ export default function Footer({children, copyrigth, color="#e8e8e8", background
                     </div>
                     <div className={styles.contact} style={{color:color}}>
                         { (data.email) ? <a style={{color:color}} aria-label="email" href={`mailto:${data.email}?subject=Mail from homepage`}>{data.email}</a> : (<></>) }
-                        { (data.contactNumber) ? <a style={{color:color}} href={data.contactLink} target="_BLANK">{data.contactNumber}</a> : (<></>) }
+                        { (data.contactNumber) ? <a style={{color:color}} href={data.contactlink} target="_BLANK">{data.contactNumber}</a> : (<></>) }
                         { (data.googlemaps) ? <a style={{color:color}} href={data.googlemaps} target="_BLANK">{data.direction}</a> : (<></>) }
                         { (data.location) ? <p style={{color:color}}>{data.location}</p> : (<></>) }
                         { (data.country) ? <p style={{color:color}}>{data.country}</p> : (<></>) }

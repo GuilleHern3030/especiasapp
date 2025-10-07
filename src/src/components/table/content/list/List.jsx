@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react"
 import styles from "./List.module.css"
-import { priceundefined } from "../../../data/references.json"
+import { priceundefined } from "../../../../data/references.json"
 
 const parseJsxElements = (elements) => {
     const lines = [];
-    console.log(elements.elements)
-    elements.elements.forEach((element, i) => {
+    elements.rows.forEach((element, i) => {
         lines.push(
             <div key={i} className={styles.element_container}>
                 <p className={styles.element_name}>{element[0]}</p>
-                <div className={styles.element_prices}>{parseJsxPrices(elements.headers, element)}</div>
+                <div className={styles.element_prices}>{parseJsxPrices(elements.columns, element)}</div>
                 <hr style={{marginTop: '1rem'}}/>
             </div>
         )
@@ -28,7 +27,7 @@ const parseJsxPrices = (headers, prices) => {
     return vars;
 }
 
-export default function List({children, elements}) {
+export default function List({elements}) {
 
     const [ rows , setRows ] = useState()
 

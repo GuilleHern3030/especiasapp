@@ -1,7 +1,6 @@
-import ArticlesList from '../../components/list/List'
-
 import Header from '../../components/header/Header'
 import Footer from '../../components/footer/Footer'
+import Table from '../../components/table/Table'
 import { Link } from 'react-router-dom'
 
 import { credits } from '../../data/references.json'
@@ -30,7 +29,9 @@ export default function Home() {
             <img src={logo}/>
         </div>
 
-        <ArticlesList/>
+        <div className={styles.table}>
+            <Table/>
+        </div>
 
         <div style={{paddingTop:'16vw'}} />
 

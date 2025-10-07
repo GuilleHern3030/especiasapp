@@ -1,7 +1,9 @@
 {
     "basename": "/especiasapp/",
     "data_uri": "/data/data.json",
+    "links_uri": "/data/googlesheets.json",
     "priceundefined": "consultar",
     "columnwidth": 72,
+    "cache-time": 2,
     "credits": "https://guillenh.com"
 }

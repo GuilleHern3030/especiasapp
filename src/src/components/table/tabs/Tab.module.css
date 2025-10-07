@@ -1,0 +1,17 @@
+.tabSelected {
+    background-color: rgb(169, 159, 159);
+}
+
+.cell > p {
+    user-select: none;
+}
+
+.cell:hover {
+    background-color: rgb(178, 188, 188);
+}
+
+.cell {
+    flex-grow: 1;
+    padding: .6rem .4rem;
+    border: 1px solid black;
+}

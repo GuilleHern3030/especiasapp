@@ -75,11 +75,11 @@
     font-size: calc(var(--footer-fontsize) * 2/3);
 }
 
-@media only screen and (min-width: 1024px) {
+/*@media only screen and (min-width: 1024px) {
     .container {  
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         place-items: center;
         justify-items: start;
     }
-}
+}*/

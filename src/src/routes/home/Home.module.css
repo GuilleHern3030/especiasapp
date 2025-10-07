@@ -18,6 +18,11 @@
     margin-top: 24px;
 }
 
+.table {
+    margin: 4px;
+    user-select: none;
+}
+
 
 @media only screen and (min-width: 360px) {
     :root {

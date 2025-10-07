@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import styles from "./Table.module.css"
+import styles from "./Rows.module.css"
 
 const templateColumns = columns => {
     let value = "3fr";
@@ -28,33 +28,24 @@ const parseJsxHeaders = (headers) => {
     return cells;
 }
 
-export default function Table({children, elements}) {
+export default function Rows({elements}) {
 
     const [ rows , setRows ] = useState()
     const [ headers , setHeaders ] = useState()
-    
+
     useEffect(() => { 
         if (elements != undefined && elements != null) {
-            setHeaders(parseJsxHeaders(elements.headers))
-            setRows(parseJsxElements(elements.elements))
+            setHeaders(parseJsxHeaders(elements.columns))
+            setRows(parseJsxElements(elements.rows))
         }
      }, [elements]);
 
     return (<>
-        { elements === undefined ?
-            <div>
-                <p>Cargando...</p>
-            </div> 
-        : elements === null ?
-            <div>
-                <p>No hay datos</p>
-            </div>
-        : <div className={styles.table} style={{
-            gridTemplateColumns: templateColumns(elements.columns)
+        <div className={styles.table} style={{
+            gridTemplateColumns: templateColumns(elements.columns.length)
         }}>
             <>{headers}</>
             <>{rows}</>
         </div>
-        }
     </>)
 }
