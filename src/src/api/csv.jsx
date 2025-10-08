@@ -2,19 +2,18 @@
 const NEWLINE = "\n";
 const ELEMENT_CONTAINER = '"';
 
-// Error manager
-const errManager = err => {
-  console.error(err)
-  return null;
-}
-
-// Gets the GoogleSheets information in CSV format
-const getCSV = async (url) => {
-  return url == null ? url : fetch(url)
-    .then(res => res.text())
-    .then(csv => csv.startsWith(ELEMENT_CONTAINER) ? csv : // checks csv format
-      errManager("Invalid GoogleSheets link URL?\nDocument obtained doesn't have CSV format\n" + csv))
-    .catch(err => errManager("Invalid GoogleSheets link URL?\n" + err))
+// Parse an Array from API GoogleSheetsV4 to CSV
+const parseArrayV4ToCSV = array => {
+  const headers = array[0]
+  let csv = ""
+  array.forEach((row, r) => {
+    const columns = row.length
+    csv += (r == 0 ? '"' : '\n"') + row.map(str => str.replaceAll('"', '')).join('","') + '"'
+    if (headers.length > columns)
+      for (let i = 0; i < (headers.length - columns); i++)
+        csv += ',""'
+  });
+  return csv
 }
 
 // Parse a row from a CSV into an Array
@@ -50,12 +49,16 @@ const getRows = (content, columns) => {
 }
 
 // Parse CSV content into Articles object
-const getArticlesFromCSV = csv => {
+export const parseCSVtoJSON = csv => {
+  if (csv == null) return null;
+  if (Array.isArray(csv))
+    csv = parseArrayV4ToCSV(csv)
+
   const lines = csv.split(NEWLINE)
   const columns = getArrayLine(lines.shift()) // first row is headers
   const rows = getRows(lines, columns.length);
 
-  const cellId = (row, column) => `${row}-${column}`;
+  //const cellId = (row, column) => `${row}-${column}`;
 
   const getCell = (row, column) => {
     return row >= 0 && row < rows.length && column >= 0 && column < columns.length ?
@@ -63,45 +66,31 @@ const getArticlesFromCSV = csv => {
       name: rows[row][0],
       header: columns[column],
       price: column == 0 ? null : rows[row][column] == "" ? undefined : rows[row][column],
-      cellId: cellId(row, column)
+      //cellId: cellId(row, column)
     } : null
   }
 
-  const get = (row) => {
+  /*const get = (row) => {
     return row >= 0 && row < rows.length ?
     {
       name: rows[row][0],
       prices: rows[row].slice(1)
     } : null
-  }
-
-  const selected = [];
-
-  const select = (row, column) => {
-    if (!selected.includes(cellId(row, column)))
-      selected.push(cellId(row, column))
-  }
-
-  const unselect = (row, column) => {
-    const index = selected.indexOf(cellId(row, column))
-    if (index >= 0) selected.splice(index)
-  }
+  }*/
 
   return {
     columns,
     rows,
-    selected,
     getCell,
-    get,
-    select,
-    unselect
+    //get
   };
 }
 
-export default async function useGoogleSheets(link) {
-  try {
-    const csv = await getCSV(link)
-    const articles = getArticlesFromCSV(csv)
-    return articles;
-  } catch (err) { return null; }
+/**
+ * Parse a CSV file into a JSON
+ * @param {String} csv CSV file
+ * @returns 
+ */
+export default function useCSV(csv) {
+    return parseCSVtoJSON(csv)
 }

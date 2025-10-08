@@ -1,46 +1,40 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useRef } from "react";
 
-import { createIndexedDB } from "../hooks/useIndexedDB";
-import useGoogleSheets from "../hooks/useGoogleSheets";
+import fetchTable from "../api/dataBase";
 
 import { links_uri, basename } from '../data/references.json'
+import { haveSelections } from "../api/sessionStorage";
 const LINKS_URI = basename+links_uri
 
 export const TablesContext = createContext();
 
 export function TablesContextProvider(props) {
 
+    const initialized = useRef(false);
+
     const [ tableLinks, setTableLinks ] = useState(undefined)
     const [ tabSelected, setTabSelected ] = useState(undefined)
     const [ table, setTable ] = useState(undefined)
+    const [ areThereSelections, setAreThereSelections ] = useState(haveSelections())
 
     useEffect( () => {
-      createIndexedDB()
+      if (initialized.current) return; // evita múltiples ejecuciones
+      initialized.current = true;
+
       fetch(LINKS_URI)
         .then(res => isJSON(res))
-        .then(res => res.json())
+        .then(data => data.json())
         .then(json => setRoutes(json))
         .catch(err => setRoutes(null))
+      
     }, []);
-
-    const loadTable = async tableLink => {
-      console.log("Loading table from " + tableLink)
-      setTable(undefined)
-      const jsonTable = await useGoogleSheets(tableLink)
-      console.log("Table loaded:\n", jsonTable)
-      setTable(jsonTable)
-    }
 
     const setRoutes = json => {
       if (json != null) {
         const { tab, link } = defaultTable(json)
-        loadTable(link)
         setTabSelected(tab)
         setTableLinks(json)
-        console.log(
-          "Links setted:", json, 
-          "\nDefault tab selected:", tab,
-          "\nDefault table selected:", link)
+        loadTable(link, tab)
       } else {
         console.error("Tables not loaded")
         loadTable(null)
@@ -49,11 +43,25 @@ export function TablesContextProvider(props) {
       }
     }
 
+    const loadTable = async (tableLink, tabSelected=undefined) => {
+      try {
+        setTable(undefined)
+        const jsonTable = await fetchTable(tableLink)
+        if (jsonTable != null)
+          jsonTable.route = tabSelected
+        setTable(jsonTable)
+        //console.log(jsonTable)
+      } catch(exception) {
+        console.error(exception)
+        setTable(null)
+      }
+    }
+
     return (<>
         <TablesContext.Provider
             value = {
                 {
-                    tableLinks, tabSelected, setTabSelected, table, loadTable
+                    tableLinks, tabSelected, setTabSelected, table, loadTable, areThereSelections, setAreThereSelections
                 }
             }
         >

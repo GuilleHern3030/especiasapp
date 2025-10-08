@@ -59,8 +59,8 @@
 
 .social > a > img {
     transition: transform 0.15s;
-    height: 8vw;
-    width: 8vw;
+    height: calc(var(--footer-fontsize) * 3);
+    width: calc(var(--footer-fontsize) * 3);
     margin: 2vw;
 }
 

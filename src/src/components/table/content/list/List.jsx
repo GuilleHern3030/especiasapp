@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import styles from "./List.module.css"
-import { priceundefined } from "../../../../data/references.json"
+import ListItem from "./ListItem"
 
 const parseJsxElements = (elements) => {
     const lines = [];
@@ -8,7 +8,7 @@ const parseJsxElements = (elements) => {
         lines.push(
             <div key={i} className={styles.element_container}>
                 <p className={styles.element_name}>{element[0]}</p>
-                <div className={styles.element_prices}>{parseJsxPrices(elements.columns, element)}</div>
+                <div className={styles.element_prices}>{parseJsxPrices(elements.columns, element, i)}</div>
                 <hr style={{marginTop: '1rem'}}/>
             </div>
         )
@@ -16,12 +16,13 @@ const parseJsxElements = (elements) => {
     return lines;
 }
 
-const parseJsxPrices = (headers, prices) => {
+const parseJsxPrices = (headers, prices, k) => {
     const vars = []
+    const name = prices[0]
     for (const i in prices) {
-        const value = prices[i] == '' ? priceundefined : prices[i];
+        const value = prices[i]
         if (i != 0) vars.push( // name omited
-            <p key={i}>{headers[i]}: {value}</p>
+            <ListItem key={i} name={name} id={`${k}-${i}`} header={headers[i]} price={value}/>
         )
     }
     return vars;
@@ -38,18 +39,9 @@ export default function List({elements}) {
     }, [elements]);
 
     return (<>
-        { elements === undefined ?
-            <div>
-                <p>Cargando...</p>
-            </div> 
-        : elements === null ?
-            <div>
-                <p>No hay datos</p>
-            </div>
-        : <div className={styles.list}>
+        <div className={styles.list}>
             <hr style={{marginTop: '1rem', marginBottom: '1rem'}}/>
             <>{rows}</>
         </div>
-        }
     </>)
 }

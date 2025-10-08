@@ -23,6 +23,27 @@
     user-select: none;
 }
 
+.ticketbutton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+.ticketbutton * {
+    padding: 4px;
+    color: black;
+    text-decoration: none;
+    border-radius: 30%;
+    font-size: 1.2rem;
+    background-color: blanchedalmond;
+    border: 2px solid black
+}
+
+.ticketbutton p:hover {
+    background-color: rgb(216, 191, 153)
+}
+
 
 @media only screen and (min-width: 360px) {
     :root {

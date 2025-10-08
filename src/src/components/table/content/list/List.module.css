@@ -21,6 +21,16 @@
     margin-left: 3rem;
 }
 
+.element_selected {
+    color: #262dbc;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.element_unselected:hover {
+    color: #2f2e2e;
+}
+
 .list p {
     user-select: none;
     font-size: 6vw;

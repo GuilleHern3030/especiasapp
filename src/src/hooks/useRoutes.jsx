@@ -7,6 +7,7 @@ import options from '../data/references.json'
 import Home from '../routes/home/Home'
 import Contact from '../routes/contact/Contact'
 import About from '../routes/about/About'
+import Ticket from '../routes/ticket/Ticket'
 import Content from '../components/table/content/Content'
 import ErrorRoute from '../routes/error/Error'
 
@@ -34,6 +35,10 @@ export default function useRoutes() {
     {
       path: "/contact",
       element: <Contact/>
+    },
+    {
+      path: "ticket",
+      element: <Ticket/>
     }
   ], options)
 }

@@ -20,8 +20,7 @@
 .header {
     margin-top: 0;
     margin-bottom: 0;
-    padding-left: 8px;
-    padding-right: 8px;
+    padding: 8px 4px;
 }
 
 .celltext {
@@ -41,31 +40,32 @@
     padding-right: 2px;
 }
 
+.cellselected {
+    background-color: rgb(175, 175, 175);
+}
+
 .table p {
     user-select: none;
     font-size: 4vw;
 }
 
 @media only screen and (min-width: 360px) {
-    .table p {
-        font-size: 12px;
-    }
+    .header { font-size: 15px !important; }
+    .table p { font-size: 12px; }
 }
 
 @media only screen and (min-width: 480px) {
-    .table p {
-        font-size: 16px;
-    }
+    .header { font-size: 20px !important; }
+    .table p { font-size: 16px; }
+    .cellunselected:hover { background-color: rgb(225, 225, 225); }
 }
 
 @media only screen and (min-width: 768px) {
-    .table p {
-        font-size: 17px;
-    }
+    .header { font-size: 24px !important; }
+    .table p { font-size: 17px; }
 }
 
 @media only screen and (min-width: 1024px) {
-    .table p {
-        font-size: 20px;
-    }
+    .header { font-size: 26px !important; }
+    .table p { font-size: 20px; }
 }

@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
 
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 
 import whtasappIcon from '../../assets/icons/whatsapp-icon.webp';
+import facebookIcon from "../../assets/icons/facebook-icon.webp";
+import instagramIcon from "../../assets/icons/instagram-icon.webp";
+import threadsIcon from "../../assets/icons/threads-icon.webp";
+import twitterIcon from "../../assets/icons/twitter-icon.webp";
 
 import logo from '../../assets/images/logo.png'
 import styles from "./Contact.module.css";
@@ -15,9 +18,6 @@ import { credits } from "../../data/references.json";
 import useData from "../../hooks/useData";
 
 export default function Contact() {
-
-    const [submitDisabled, setSubmitDisabled] = useState(false);
-    const [submitText, setSubmitText] = useState("Enviar");
 
     const data = useData()
 
@@ -57,8 +57,13 @@ export default function Contact() {
 
             <br/>
 
-            <p className={styles.instructions}>O bien, visitarnos en nuestras redes sociales.</p>
-            
+            { data ? <>
+                <p className={styles.instructions}>O bien, visitarnos en nuestras redes sociales.</p>
+                { (data.facebook) ? <div className={styles.wame}><div className={styles.wame_animation}><a href={data.facebook}><img src={facebookIcon} alt="Facebook"/></a></div></div> : (<></>) }
+                { (data.instagram) ? <div className={styles.wame}><div className={styles.wame_animation}><a href={data.instagram}><img src={instagramIcon} alt="Instragram"/></a></div></div> : (<></>) }
+                { (data.threads) ? <div className={styles.wame}><div className={styles.wame_animation}><a href={data.threads}><img src={threadsIcon} alt="Threads"/></a></div></div> : (<></>) }
+                { (data.twitter) ? <div className={styles.wame}><div className={styles.wame_animation}><a href={data.twitter}><img src={twitterIcon} alt="Twitter"/></a></div></div> : (<></>) }
+            </> : null}                 
         </div>
 
         <Footer color='#000' backgroundColor='#b2afafff' copyrigth='Webpage created by GuilleNH' copyrightHref={credits}/>

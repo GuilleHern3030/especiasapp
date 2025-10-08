@@ -1,6 +1,7 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { columnwidth } from "../../../data/references.json"
 import useTable from "../../../hooks/useTables";
+import Loading from "../../loading/Loading"
 
 import List from "./list/List"
 import Rows from "./rows/Rows"
@@ -8,25 +9,32 @@ import Rows from "./rows/Rows"
 export default function ListManager() {
 
   const { table } = useTable()
-
   
   const isBigger = useIsTableBigger(table)
   
-  return <div>
+  return <>
     {
       table === null ?
-        <div>
-          <p>No hay datos</p>
+        <div style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+          marginTop: "1rem",
+          fontSize: "1.1rem"
+        }}>
+          <p style={{textAlign:"center"}}>Esta tabla no está disponible en este momento</p>
+          <p style={{textAlign:"center"}}>Disculpe las molestias</p>
         </div>
       : table === undefined ?
         <div>
-          <p>Cargando...</p>
+          <Loading/>
         </div> 
       : isBigger ? 
         <List elements={table}/> :
-        <Rows elements={table}/> 
+        <Rows table={table}/> 
     }
-  </div>
+  </>
 }
 
 

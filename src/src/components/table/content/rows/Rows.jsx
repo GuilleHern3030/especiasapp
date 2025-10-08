@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react"
 import styles from "./Rows.module.css"
+import Cell from './Cell'
+
 
 const templateColumns = columns => {
     let value = "3fr";
@@ -8,12 +10,16 @@ const templateColumns = columns => {
     return value;
 }
 
-const parseJsxElements = (elements) => {
+const parseJsxRows = (table) => {
+    const elements = table.rows
     const cells = [];
-    let key = Number(elements.length) + 1;
-    elements.forEach((element, i) => {
-        element.forEach((data, k) => { key ++;
-            cells.push(<div key={key} id={`${i}-${k}`} className={styles.cell}><p id={`cell-${key}`} className={styles.celltext}>{data}</p></div>)
+    let key = Number(table.rows.length) + 1;
+    table.rows.forEach((row, i) => {
+        const name = row[0]
+        row.forEach((content, k) => { key ++;
+            const header = table.columns[k]
+            const id = k != 0 ? `${i}-${k}` : undefined
+            cells.push(<Cell key={key} id={id} header={header} name={name} content={content}/>)
         })
     })
     return cells;
@@ -28,21 +34,21 @@ const parseJsxHeaders = (headers) => {
     return cells;
 }
 
-export default function Rows({elements}) {
+export default function Rows({table}) {
 
     const [ rows , setRows ] = useState()
     const [ headers , setHeaders ] = useState()
 
     useEffect(() => { 
-        if (elements != undefined && elements != null) {
-            setHeaders(parseJsxHeaders(elements.columns))
-            setRows(parseJsxElements(elements.rows))
+        if (table != undefined && table != null) {
+            setHeaders(parseJsxHeaders(table.columns))
+            setRows(parseJsxRows(table))
         }
-     }, [elements]);
+     }, [table]);
 
     return (<>
         <div className={styles.table} style={{
-            gridTemplateColumns: templateColumns(elements.columns.length)
+            gridTemplateColumns: templateColumns(table.columns.length)
         }}>
             <>{headers}</>
             <>{rows}</>

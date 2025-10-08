@@ -3,14 +3,16 @@ import { TablesContext } from '../context/TablesContext'
 
 export default function useTable() {
 
-  const { tableLinks, tabSelected, setTabSelected, table, loadTable } = useContext(TablesContext)
+  const { tableLinks, tabSelected, setTabSelected, table, loadTable, areThereSelections } = useContext(TablesContext)
 
-    const onTabSelected = tabSelected => {
-        const route = typeof(tabSelected) === "string" ? tabSelected.split("¬") : tabSelected.slice()
-        setTabSelected(route)
-        const { link } = getSubRoutes(tableLinks, route)
-        if (link != null)
-            loadTable(link)
+    const onTabSelected = rawRoute => {
+        const route = typeof(rawRoute) === "string" ? rawRoute.split("¬") : rawRoute.slice()
+        if (route.join(",") != tabSelected.join(",")) {
+            setTabSelected(route)
+            const { link } = getSubRoutes(tableLinks, route)
+            if (link != null)
+                loadTable(link, route)
+        }
     }
 
     const subRoutes = tab => {
@@ -18,12 +20,46 @@ export default function useTable() {
         return getSubRoutes(tableLinks, route)
     }
 
+    const getKey = id => id != undefined ? "ITEM:" + table.route.join("¬") + "¬" + id : id
+    const getKeys = () => { // keysSelected
+        const selected = []
+        for (let i = 0; i < sessionStorage.length; i++) {
+            const key = sessionStorage.key(i)
+            if (key != null && key.startsWith("ITEM:"))
+                selected.push(key)
+        }
+        return selected
+    }
+
+    const getSelected = () => { // keysSelected values
+        const selected = []
+        for (let i = 0; i < sessionStorage.length; i++) {
+            const key = sessionStorage.key(i)
+            if (key != null && key.startsWith("ITEM:"))
+                selected.push(sessionStorage.getItem(key))
+        }
+        return selected
+    }
+
+    const getLinkTo = fullRoute => {
+        if (fullRoute != undefined) {
+            const recursiveAccess = (json, route) => 
+                route.length > 0 ? recursiveAccess(json[route.shift()], route) : json
+            return recursiveAccess(tableLinks, fullRoute.slice())
+        }
+    }
+
     return {
         onTabSelected,
         getSubRoutes: subRoutes,
         tables: tableLinks, // Json
         tabSelected, // Array
-        table // String (link)
+        areThereSelections,
+        table, // String (link)
+        getKey, // Array
+        getKeys, // Array
+        getSelected, // Array
+        getLinkTo, // String (link)
     }
 
 }
