@@ -14,7 +14,6 @@ export default function useSelection(key) {
 
     const handleClick = (key, name, header, content) => {
         if (key) {
-
             if (selected) {
                 setSelected(false)
                 sessionStorage.removeItem(key)
@@ -24,8 +23,6 @@ export default function useSelection(key) {
                 sessionStorage.setItem(key, handleName(name, header, content))
                 setAreThereSelections(true)
             }
-
-            console.log(ticketParams())
         }
     }
 
