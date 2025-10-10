@@ -21,6 +21,7 @@ export default function useRoutes() {
     {
       path: "",
       element: <Home/>,
+      errorElement: <ErrorRoute/>,
       children:[
         {
           path:'/table/:id',
@@ -38,6 +39,7 @@ export default function useRoutes() {
     },
     {
       path: "ticket",
+      errorElement: <ErrorRoute/>,
       element: <Ticket/>
     }
   ], options)

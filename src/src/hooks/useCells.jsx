@@ -23,11 +23,11 @@ export default function useCells() {
 
                     for (let i = 0; i < array.length; i++) {
                         const param = array[i]
-                        const route = getParamRoute(param)
-                        const cellID = getParamCell(param)
-                        const link = getLinkTo(route)
-                        const item = await fetchTable(link).then(table => table.getCell(cellID[0], cellID[1]))
-                        items.push(item)
+                            const route = getParamRoute(param)
+                            const cellID = getParamCell(param)
+                            const link = getLinkTo(route)
+                            const item = await fetchTable(link).then(table => table.getCell(cellID[0], cellID[1])).catch(() => null)
+                            if (item != null) items.push(item)
                     }
 
                     setItems({

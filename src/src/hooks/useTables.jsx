@@ -3,15 +3,17 @@ import { TablesContext } from '../context/TablesContext'
 
 export default function useTable() {
 
-  const { tableLinks, tabSelected, setTabSelected, table, loadTable, areThereSelections } = useContext(TablesContext)
+  const { tableLinks, tabSelected, setTabSelected, table, loadTable, areThereSelections, isLoading } = useContext(TablesContext)
 
     const onTabSelected = rawRoute => {
-        const route = typeof(rawRoute) === "string" ? rawRoute.split("¬") : rawRoute.slice()
-        if (route.join(",") != tabSelected.join(",")) {
-            setTabSelected(route)
-            const { link } = getSubRoutes(tableLinks, route)
-            if (link != null)
-                loadTable(link, route)
+        if (!isLoading) {
+            const route = typeof(rawRoute) === "string" ? rawRoute.split("¬") : rawRoute.slice()
+            if (route.join(",") != tabSelected.join(",")) {
+                setTabSelected(route)
+                const { link } = getSubRoutes(tableLinks, route)
+                if (link != null)
+                    loadTable(link, route)
+            }
         }
     }
 

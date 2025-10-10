@@ -26,11 +26,11 @@ export default function useSelection(key) {
         }
     }
 
-    if (key) {
-        useEffect(() => { 
+    useEffect(() => { 
+        if (key) {
             setSelected(sessionStorage.getItem(key) != null)
-        }, [])
-    }
+        }
+    }, [])
 
     return { handleClick, selected }
 }

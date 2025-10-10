@@ -12,6 +12,7 @@ export function TablesContextProvider(props) {
 
     const initialized = useRef(false);
 
+    const [ isLoading, setIsLoading ] = useState(false)
     const [ tableLinks, setTableLinks ] = useState(undefined)
     const [ tabSelected, setTabSelected ] = useState(undefined)
     const [ table, setTable ] = useState(undefined)
@@ -46,6 +47,7 @@ export function TablesContextProvider(props) {
     const loadTable = async (tableLink, tabSelected=undefined) => {
       try {
         setTable(undefined)
+        setIsLoading(true)
         const jsonTable = await fetchTable(tableLink)
         if (jsonTable != null)
           jsonTable.route = tabSelected
@@ -54,6 +56,8 @@ export function TablesContextProvider(props) {
       } catch(exception) {
         console.error(exception)
         setTable(null)
+      } finally {
+        setIsLoading(false)
       }
     }
 
@@ -61,7 +65,14 @@ export function TablesContextProvider(props) {
         <TablesContext.Provider
             value = {
                 {
-                    tableLinks, tabSelected, setTabSelected, table, loadTable, areThereSelections, setAreThereSelections
+                    tableLinks, 
+                    tabSelected, 
+                    setTabSelected, 
+                    table, 
+                    loadTable, 
+                    isLoading,
+                    areThereSelections, 
+                    setAreThereSelections
                 }
             }
         >
