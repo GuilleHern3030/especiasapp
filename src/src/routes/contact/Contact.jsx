@@ -37,7 +37,7 @@ export default () => {
                 <article className={styles.article} style={{backgroundColor:"#dcd9d9ff"}}>
                     <p className={styles.title}><span>Medio de contacto</span></p>
                     <p>Podés contactarnos a través de nuestro WhatsApp</p>
-                    <a target="_BLANK" href={data.whatsapp}><img className={`${styles.icon} ${styles.preferredcontact}`} src={whatsapp}/></a>
+                    <a target="_BLANK" href={data.contactlink}><img className={`${styles.icon} ${styles.preferredcontact}`} src={whatsapp}/></a>
                 </article>
                 
                 <article className={styles.article} style={{backgroundColor:"#c9c3c3"}}>
