@@ -44,9 +44,9 @@ export default () => {
                     <p className={styles.title}><span>Nuestras redes sociales</span></p>
                     <p>También podés encontrarnos en nuestras redes sociales</p>
                     <div className={styles.social}>
-                        <a target="_BLANK" href={data.facebook}><img className={styles.icon} src={facebook}/></a>
-                        <a target="_BLANK" href={data.instagram}><img className={styles.icon} src={instagram}/></a>
-                        <a target="_BLANK" href={data.twitter}><img className={styles.icon} src={twitter}/></a>
+                        { data.facebook ? <a target="_BLANK" href={data.facebook}><img className={styles.icon} src={facebook}/></a> : <></> }
+                        { data.instagram ? <a target="_BLANK" href={data.instagram}><img className={styles.icon} src={instagram}/></a> : <></> }
+                        { data.twitter ? <a target="_BLANK" href={data.twitter}><img className={styles.icon} src={twitter}/></a> : <></> }
                     </div>
                 </article>
                 
