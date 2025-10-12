@@ -37,9 +37,9 @@ export default function Ticket() {
 
     return <>
         <Header 
-            image={undefined}
             pageName={title}
             colorOnScroll='#1f1f1fff'
+            logo={logo}
             changeBackgroundOnScroll={true}>
             <Link to="/about"> Nosotros </Link>
             <Link to="/contact"> Contacto </Link>

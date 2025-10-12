@@ -1,3 +1,7 @@
+:root {
+    --img-width: 60vw;
+}
+
 .main {
     margin: 0 1rem;
 }
@@ -27,17 +31,25 @@
 .bottomImg {
     margin: 3vw;
     border-radius: 10px;
-    width: 90vw;
+    width: var(--img-width);
+    user-select: none;
+}
+
+@media only screen and (min-width: 360px) {
+    :root { --img-width: 50vw }
 }
 
 @media only screen and (min-width: 480px) {
     .bottomImg { width: 50vw; }
+    :root { --img-width: 40vw }
 }
 
 @media only screen and (min-width: 768px) {
     .bottomImg { width: 35vw; }
+    :root { --img-width: 400px }
 }
 
 @media only screen and (min-width: 1024px) {
     .bottomImg { width: 500px; }
+    :root { --img-width: 450px }
 }

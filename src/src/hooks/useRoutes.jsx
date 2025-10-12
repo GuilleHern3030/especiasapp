@@ -10,6 +10,7 @@ import About from '../routes/about/About'
 import Ticket from '../routes/ticket/Ticket'
 import Content from '../components/table/content/Content'
 import ErrorRoute from '../routes/error/Error'
+import Privacy from '../routes/privacy/Privacy'
 
 export default function useRoutes() {
     return createBrowserRouter([
@@ -28,6 +29,10 @@ export default function useRoutes() {
           element:<Content/>
         }
       ]
+    },
+    {
+      path: "/privacy",
+      element: <Privacy/>
     },
     {
       path: "/about",

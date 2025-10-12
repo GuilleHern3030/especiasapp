@@ -5,13 +5,20 @@ import styles from "./About.module.css";
 import Header from '../../components/header/Header';
 import Footer from "../../components/footer/Footer";
 
+import logo from '../../assets/images/logo.png'
+import logo2 from '../../assets/icons/logo.png'
+
 import { title } from "../../data/client-info.json";
 import { credits } from "../../data/references.json";
 
 export default function About() {
 
     return (<>
-        <Header pageName={title}>
+        <Header 
+            pageName={title}
+            colorOnScroll='#1f1f1fff'
+            logo={logo2}
+            changeBackgroundOnScroll={true}>
             <Link to="/about"> Nosotros </Link>
             <Link to="/contact"> Contacto </Link>
         </Header>

@@ -11,6 +11,7 @@ import { title } from '../../data/client-info.json'
 import styles from './Home.module.css'
 
 import logo from '../../assets/images/logo.png'
+import logo2 from '../../assets/icons/logo.png'
 import useTable from '../../hooks/useTables'
 
 export default function Home() {
@@ -19,9 +20,9 @@ export default function Home() {
 
     return <>
         <Header 
-            image={undefined}
             pageName={title}
             colorOnScroll='#1f1f1fff'
+            logo={logo2}
             changeBackgroundOnScroll={true}>
             <Link to="/about"> Nosotros </Link>
             <Link to="/contact"> Contacto </Link>

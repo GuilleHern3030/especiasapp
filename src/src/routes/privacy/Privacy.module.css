@@ -1,0 +1,31 @@
+.main {
+    background-color: rgb(234, 234, 234);
+    padding: 7vw;
+    user-select: none;
+}
+
+.title {
+    font-size: 1.6em;
+    padding: 1rem 0;
+    color: brown;
+    font-weight: 600;
+}
+
+.subtitle {
+    font-size: 1.3em;
+    padding: 1rem 0;
+    color: brown;
+    font-weight: 600;
+}
+
+.article {
+    font-size: 1.1em;
+    font-weight: 550;
+    padding: .7rem 0;
+    color: rgb(15, 15, 15);
+}
+
+.text {
+    padding: .7rem 0;
+    color: rgb(15, 15, 15);
+}
