@@ -28,7 +28,7 @@ export default () => {
         </div>
 
         <div className={styles.info}>
-            { data.contactNumber ? <a href={data.whatsapp} target="_BLANK">{data.contactNumber}</a> : <></> }
+            { data.contactNumber ? <a href={data.contactlink} target="_BLANK">{data.contactNumber}</a> : <></> }
             { data.email ? <a className={styles.email} aria-label="email" href={`mailto:${data.email}?subject=CenitEspecias"`}>{data.email}</a> : <></> }
             { data.address ? <a href={data.googlemaps} target="_BLANK">{data.address}</a> : <></> }
         </div>

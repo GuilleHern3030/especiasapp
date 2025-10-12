@@ -3,7 +3,7 @@ import { createContext, useState, useEffect, useRef } from "react";
 import fetchTable from "../api/dataBase";
 
 import { links_uri, basename } from '../data/references.json'
-import { haveSelections } from "../api/sessionStorage";
+import { amountOfSelections } from "../api/sessionStorage";
 const LINKS_URI = basename+links_uri
 
 export const TablesContext = createContext();
@@ -16,7 +16,7 @@ export function TablesContextProvider(props) {
     const [ tableLinks, setTableLinks ] = useState(undefined)
     const [ tabSelected, setTabSelected ] = useState(undefined)
     const [ table, setTable ] = useState(undefined)
-    const [ areThereSelections, setAreThereSelections ] = useState(haveSelections())
+    const [ selections, setSelections ] = useState(amountOfSelections())
 
     useEffect( () => {
       if (initialized.current) return; // evita múltiples ejecuciones
@@ -71,8 +71,8 @@ export function TablesContextProvider(props) {
                     table, 
                     loadTable, 
                     isLoading,
-                    areThereSelections, 
-                    setAreThereSelections
+                    setSelections, 
+                    selections
                 }
             }
         >

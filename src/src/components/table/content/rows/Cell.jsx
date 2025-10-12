@@ -1,6 +1,5 @@
 import styles from "./Rows.module.css"
-import useTable from "../../../../hooks/useTables"
-import useSelection from "../../../../hooks/useSelection"
+import useTable, { useSelection } from "../../../../hooks/useTables"
 
 export default function cell({id, name, header, content}) {
     

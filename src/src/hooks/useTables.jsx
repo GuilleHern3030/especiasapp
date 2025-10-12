@@ -1,9 +1,43 @@
-import { useContext } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { TablesContext } from '../context/TablesContext'
+import { useLocation } from "react-router-dom";
+import { amountOfSelections } from "../api/sessionStorage"
+
+const handleName = (name, header, content) => {
+    return `${name} (${header}): $${content}`
+}
+
+export function useSelection(key) {
+
+    const { setSelections } = useContext(TablesContext)
+    const [ selected, setSelected ] = useState()
+
+    const handleClick = (key, name, header, content) => {
+        if (key) {
+            if (selected) {
+                setSelected(false)
+                sessionStorage.removeItem(key)
+                setSelections(amountOfSelections())
+            } else {
+                setSelected(true)
+                sessionStorage.setItem(key, handleName(name, header, content))
+                setSelections(amountOfSelections())
+            }
+        }
+    }
+
+    useEffect(() => { 
+        if (key) {
+            setSelected(sessionStorage.getItem(key) != null)
+        }
+    }, [])
+
+    return { handleClick, selected }
+}
 
 export default function useTable() {
 
-  const { tableLinks, tabSelected, setTabSelected, table, loadTable, areThereSelections, isLoading } = useContext(TablesContext)
+  const { tableLinks, tabSelected, setTabSelected, table, loadTable, selections, isLoading } = useContext(TablesContext)
 
     const onTabSelected = rawRoute => {
         if (!isLoading) {
@@ -56,7 +90,7 @@ export default function useTable() {
         getSubRoutes: subRoutes,
         tables: tableLinks, // Json
         tabSelected, // Array
-        areThereSelections,
+        selections,
         table, // String (link)
         getKey, // Array
         getKeys, // Array
@@ -103,4 +137,47 @@ const getSubRoutes = (json, route=[]) => {
     }
 
     return subRoutes(json, route.slice())
+}
+export const getParamRoute = param => param.split("¬").slice(0, -1)
+export const getParamCell = param => param.split("¬").slice(-1)[0].split("-")
+
+export const useParams = () => {
+
+    const [ params, setParams ] = useState([])
+
+    const { search } = useLocation(); // Ej: "?id=tres&name=Guille"
+
+    useEffect(() => {
+        const query = new URLSearchParams(search)
+        let param = undefined
+        let params = []
+        let index = 1
+        do {
+            param = query.get(`item${index}`)
+            if (param !== null)
+                params.push(param)
+            index++
+        } while(param !== null)
+
+        setParams(params)
+        
+    }, [])
+
+    return params
+}
+
+export const ticketParams = () => {
+    const selected = []
+    for (let i = 0; i < sessionStorage.length; i++) {
+        const key = sessionStorage.key(i)
+        if (key != null && key.startsWith("ITEM:")) {
+            const value = sessionStorage.getItem(key)
+            selected.push(`item${i+1}=${key.substring(5)}`)
+        }
+    }
+    if (selected.length > 0) {
+        const query = selected.join("&");
+        const url = `?${query}`;
+        return url
+    } return ""
 }

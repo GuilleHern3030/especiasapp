@@ -1,7 +1,6 @@
 import styles from './List.module.css'
 
-import useTable from '../../../../hooks/useTables'
-import useSelection from '../../../../hooks/useSelection'
+import useTable, { useSelection } from '../../../../hooks/useTables'
 
 export default function ListItem({id, name, header, price: content}) {
 

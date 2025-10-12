@@ -1,11 +1,11 @@
 .floatingbutton {
-    --img-size: 14vw;
+    --img-size: 40px;
     position: fixed;
     height: 83px;
     width: 83px;
     border-radius: 100%;
     bottom: 7vh;
-    right: 2.5vw;
+    right: 1rem;
     z-index: 60;
     cursor: pointer;
 }
@@ -14,22 +14,22 @@
     height: var(--img-size);
     width: var(--img-size);
     transition: transform 0.15s;
+    user-select: none;
 }
 
 .floatingbutton img:hover {
     transform: scale(1.2);
 }
 
-
 @media only screen and (min-width: 360px) {
     .floatingbutton {
-        --img-size: 50px
+        --img-size: 65px
     }
 }
 
 @media only screen and (min-width: 480px) {
     .floatingbutton {
-        --img-size: 65px
+        --img-size: 75px
     }
 }
 

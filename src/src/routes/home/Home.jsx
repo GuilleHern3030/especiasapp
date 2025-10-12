@@ -4,6 +4,7 @@ import Header from '../../components/header/Header'
 import Footer from '../../components/footer/Footer'
 import FloatingButton from '../../components/floatingbutton/FloatingButton'
 import Table from '../../components/table/Table'
+import ShoppingCart from '../../components/shopping-cart/ShoppingCart'
 
 import { credits } from '../../data/references.json'
 import { title } from '../../data/client-info.json'
@@ -16,7 +17,7 @@ import useTable from '../../hooks/useTables'
 
 export default function Home() {
 
-    const { areThereSelections } = useTable()
+    const { selections } = useTable()
 
     return <>
         <Header 
@@ -34,12 +35,12 @@ export default function Home() {
             <img src={logo}/>
         </div>
 
-        <div className={styles.table}>
-            <Table/>
-
-            { areThereSelections === true ? <div className={styles.ticketbutton}><Link to="/ticket" onClick={() => window.scrollTo({top:0})}>Ver ticket</Link></div> : <></> }
-
-        </div>
+        { selections > 0 ? <ShoppingCart to="/ticket" onClick={() => window.scrollTo({top:0})}>Ver ticket</ShoppingCart> : null }
+        
+        
+        <div className={styles.table}> <Table/> </div>
+        
+        { selections === true ? <div className={styles.ticketbutton}><Link to="/ticket" onClick={() => window.scrollTo({top:0})}>Ver ticket</Link></div> : <></> }
 
         <div style={{paddingTop:'16vw'}} />
 

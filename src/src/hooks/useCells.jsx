@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import fetchTable from "../api/dataBase";
-import useTables from "./useTables";
-import { useParams, getParamRoute, getParamCell } from "./useSelection";
+import useTables, { useParams, getParamRoute, getParamCell } from "./useTables";
 import { getSelections } from "../api/sessionStorage";
 
 

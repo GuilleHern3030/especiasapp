@@ -1,7 +1,7 @@
 import img from '../../assets/icons/whatsapp-icon2.webp'
 import styles from './FloatingButton.module.css'
 import useData from '../../hooks/useData'
-import { ticketParams } from '../../hooks/useSelection'
+import { ticketParams } from '../../hooks/useTables'
 
 export default function FloatingButton() {
 
