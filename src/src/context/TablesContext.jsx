@@ -22,6 +22,7 @@ export function TablesContextProvider(props) {
       if (initialized.current) return; // evita múltiples ejecuciones
       initialized.current = true;
 
+      // Obtiene los links del GoogleSheets
       fetch(LINKS_URI)
         .then(res => isJSON(res))
         .then(data => data.json())
@@ -48,11 +49,8 @@ export function TablesContextProvider(props) {
       try {
         setTable(undefined)
         setIsLoading(true)
-        const jsonTable = await fetchTable(tableLink)
-        if (jsonTable != null)
-          jsonTable.route = tabSelected
+        const jsonTable = await fetchTable(tableLink, tabSelected)
         setTable(jsonTable)
-        //console.log(jsonTable)
       } catch(exception) {
         console.error(exception)
         setTable(null)

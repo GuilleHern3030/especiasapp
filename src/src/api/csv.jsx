@@ -3,60 +3,67 @@ const NEWLINE = "\n";
 const ELEMENT_CONTAINER = '"';
 
 // Parse an Array from API GoogleSheetsV4 to CSV
-const parseArrayV4ToCSV = array => {
-  const headers = array[0]
-  let csv = ""
-  array.forEach((row, r) => {
-    const columns = row.length
-    csv += (r == 0 ? '"' : '\n"') + row.map(str => str.replaceAll('"', '')).join('","') + '"'
-    if (headers.length > columns)
-      for (let i = 0; i < (headers.length - columns); i++)
-        csv += ',""'
-  });
-  return csv
-}
-
-// Parse a row from a CSV into an Array
-const getArrayLine = line => {
-    const arrayLine = [];
-        let l = 0;
-        while(l < line.length) {
-            if (line.substring(l, l+1).includes(ELEMENT_CONTAINER)) {
-                const end = line.substring(l+1).indexOf(ELEMENT_CONTAINER) + l + 1;
-                arrayLine.push(line.substring(l+1, end));
-                l = end + 2;
-            } else { // null
-                arrayLine.push(null);
-                l += 5;
-            }
-        }
-    return arrayLine;
-}
-
-// Parse lines from CSV into Rows (Array)
-const getRows = (content, columns) => {
-    const rows = []
-    while(content.length > 0) {
-        const line = content.shift();
-        if (typeof line === 'string' && line.length > 0) {
-            const arrayLine = getArrayLine(line);
-            if (arrayLine.length == columns)
-                rows.push(arrayLine);
-            else console.error("En su archivo de datos no debe haber comillas dobles\nLa fila '" + arrayLine + "' fue eliminada");
-        }
-    }
-    return rows;
-}
-
-// Parse CSV content into Articles object
-export const parseCSVtoJSON = csv => {
+export const parseCSVToArray = csv => {
   if (csv == null) return null;
-  if (Array.isArray(csv))
-    csv = parseArrayV4ToCSV(csv)
+  if (Array.isArray(csv)) return csv;
+  if (typeof(csv) !== 'string') return null
+
+  // Parse a row from a CSV into an Array
+  const getArrayLine = line => {
+      const arrayLine = [];
+          let l = 0;
+          while(l < line.length) {
+              if (line.substring(l, l+1).includes(ELEMENT_CONTAINER)) {
+                  const end = line.substring(l+1).indexOf(ELEMENT_CONTAINER) + l + 1;
+                  arrayLine.push(line.substring(l+1, end));
+                  l = end + 2;
+              } else { // null
+                  arrayLine.push(null);
+                  l += 5;
+              }
+          }
+      return arrayLine;
+  }
+
+  // Parse lines from CSV into Rows (Array)
+  const getRows = (content, columns) => {
+      const rows = []
+      while(content.length > 0) {
+          const line = content.shift();
+          if (typeof line === 'string' && line.length > 0) {
+              const arrayLine = getArrayLine(line);
+              if (arrayLine.length == columns)
+                  rows.push(arrayLine);
+              else console.error("En su archivo de datos no debe haber comillas dobles\nLa fila '" + arrayLine + "' fue eliminada");
+          }
+      }
+      return rows;
+  }
 
   const lines = csv.split(NEWLINE)
   const columns = getArrayLine(lines.shift()) // first row is headers
   const rows = getRows(lines, columns.length);
+
+  const array = []
+  array.push(columns)
+  rows.forEach(row => { array.push(row) })
+  return array
+}
+
+// Parse CSV content into Articles object
+export const parseArrayToJSON = array => {
+  if (array == null || !Array.isArray(array)) return null;
+
+  const columns = array.shift() // first row is headers
+
+  // rows with columns formated
+  const rows = array.map(row => {
+    if (row.length > 1) {
+      while (row.length < columns.length) row.push("")
+      while (row.length > columns.length) row.pop("")
+    }
+    return row
+  })
 
   //const cellId = (row, column) => `${row}-${column}`;
 
@@ -90,7 +97,8 @@ export const parseCSVtoJSON = csv => {
  * Parse a CSV file into a JSON
  * @param {String} csv CSV file
  * @returns 
- */
+ *
 export default function useCSV(csv) {
     return parseCSVtoJSON(csv)
 }
+*/

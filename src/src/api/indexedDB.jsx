@@ -1,6 +1,6 @@
 import { maxminutesondb } from '../data/references.json'
 
-const DB_NAME = "tablesdb"
+const DB_NAME = "CenitEspeciasDB"
 const TABLE_NAME = "tables"
 
 const addTableToIDB = (tableName, csv, IDBrequest=window.indexedDB.open(DB_NAME, 1)) => {
@@ -10,7 +10,7 @@ const addTableToIDB = (tableName, csv, IDBrequest=window.indexedDB.open(DB_NAME,
         const objectStore = IDBtransaction.objectStore(TABLE_NAME)
         objectStore.put({ name: tableName, content: csv, savedAt: now.toISOString() })
         IDBtransaction.addEventListener("complete", () => {
-            console.log("CSV has been added to " + tableName)
+            //console.log("CSV has been added to " + tableName)
         })
     } catch(exception) {
         console.error(exception)

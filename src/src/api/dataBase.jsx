@@ -1,9 +1,9 @@
 import IndexedDB from "./indexedDB";
 import fetchGoogleSheets from "./googleSheets";
-import { parseCSVtoJSON } from "./csv";
+import { parseArrayToJSON, parseCSVToArray } from "./csv";
 
 // Gets a Table from a DataBase (GoogleSheets or IndexedDB)
-export default async function fetchTable(table) {
+export default async function fetchTable(table, route=undefined) {
 
     try {
         const { getTable, addTable } = await IndexedDB()
@@ -15,8 +15,14 @@ export default async function fetchTable(table) {
             console.log("HTTP request launched")
             addTable(table, csv);
         } else console.warn("Table loaded from cache")
+
+        const array = parseCSVToArray(csv)
+        const json = parseArrayToJSON(array)
         
-        const json = parseCSVtoJSON(csv)
+        if (json != null)
+            json.route = route
+
+        console.log(json)
 
         return json
 

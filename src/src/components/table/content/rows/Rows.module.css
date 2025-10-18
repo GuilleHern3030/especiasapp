@@ -40,6 +40,16 @@
     padding-right: 2px;
 }
 
+.longcell {
+    justify-content: center !important;
+    background-color: rgb(199, 195, 156);
+}
+
+.longcelltext {
+    font-size: 1.15em !important;
+    padding: .4em;
+}
+
 .cellselected {
     background-color: rgb(175, 175, 175);
 }
