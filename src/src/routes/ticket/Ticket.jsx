@@ -56,7 +56,6 @@ export default function Ticket() {
 
     const data = useData()
     
-
     const navigate = useNavigate()
 
     const handleQuery = () => {
@@ -90,8 +89,9 @@ export default function Ticket() {
             onReject={() => setDialog(null)}
             onAccept={() => {
                 setDialog(null)
-                cells.items.splice(index, 1)
                 sessionStorage.removeItem("ITEM:" + cells.keys[index])
+                cells.items.splice(index, 1)
+                cells.keys.splice(index, 1)
                 loadItems()
             }}
         />)
