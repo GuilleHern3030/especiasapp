@@ -1,5 +1,4 @@
 import styles from "./Rows.module.css"
-import useTable, { useSelection } from "../../../../hooks/useTables"
 
 export default function({content, columns}) {
 

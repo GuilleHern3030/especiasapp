@@ -21,7 +21,6 @@
 
 .items {
     display: flex;
-    align-items: center;
     justify-content: center;
     flex-direction: column;
 }
@@ -32,6 +31,8 @@
 }
 
 .total {
+    display: block;
+    text-align: center;
     font-size: 1.3rem;
     user-select: none;
     color: blue;
@@ -42,4 +43,25 @@
     border-radius: .5em;
     border: 1px solid black;
     margin: 3em 1em;
+}
+
+.button {
+    display: grid;
+    place-content: center;
+    margin: 1.8em 0;
+}
+
+.button button {
+    font-size: 1.1em;
+    font-weight: bold;
+    border: 0px;
+    background-color: #fff;
+    padding: .5em 1.5em;
+    box-shadow: 6px 4px 3px 0 #000;
+    border: 1px solid rgb(23, 23, 23);
+}
+
+.button button:hover {
+    cursor: pointer;
+    border: 1px solid rgb(66, 79, 200);
 }

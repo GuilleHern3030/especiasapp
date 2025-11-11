@@ -10,7 +10,7 @@ export default function FloatingButton() {
     const handleFloatingButton = () => {
         const params = ticketParams()
         const fullUrl = window.location.href
-        const link = encodeURIComponent(fullUrl + "ticket" + params)
+        const link = encodeURIComponent(fullUrl.split('?')[0] + params)
         
         if (params.length > 0)
             window.open(data.contactlink + "?text=Hola, quiero consultar por este producto: \n\r" + link, "_blank")

@@ -31,7 +31,8 @@ export default function ListManager() {
           <Loading/>
         </div> 
       : isBigger ? 
-        <List elements={table}/> :
+        <List elements={table}/> 
+      :
         <Rows table={table}/> 
     }
   </>

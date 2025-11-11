@@ -22,8 +22,6 @@ export default async function fetchTable(table, route=undefined) {
         if (json != null)
             json.route = route
 
-        console.log(json)
-
         return json
 
     } catch (err) {
