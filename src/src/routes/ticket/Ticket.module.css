@@ -26,8 +26,24 @@
 }
 
 .item {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    align-items: center;
+}
+
+.item > img {
+    height: 1.5em;
+    padding: .2em;
+}
+
+
+.item > img:hover {
+    cursor: pointer;
+}
+
+.item > p {
     margin: .3rem 0;
-    padding: .2rem 2rem;
+    padding: .2rem .5rem;
 }
 
 .total {
@@ -36,6 +52,7 @@
     font-size: 1.3rem;
     user-select: none;
     color: blue;
+    padding: .5em 0;
 }
 
 .ticket {
@@ -64,4 +81,13 @@
 .button button:hover {
     cursor: pointer;
     border: 1px solid rgb(66, 79, 200);
+}
+
+.empty {
+    user-select: none;
+    font-size: 1.3em;
+    display: block;
+    text-align: center;
+    padding-top: 1em;
+    margin: 1em;
 }
