@@ -47,7 +47,6 @@ export default function Ticket() {
     const hasParams = () => cells?.params?.length > 0
 
     useEffect(() => { loadItems() }, [cells])
-    useEffect(() => { console.log(items) }, [items])
 
     const loadItems = () => {
         if (Array.isArray(cells?.items))

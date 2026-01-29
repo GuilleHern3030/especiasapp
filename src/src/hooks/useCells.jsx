@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import fetchTable from "../api/dataBase";
+import { fetchTable } from "../api/tables";
 import useTables, { useParams, getParamRoute, getParamCell } from "./useTables";
 import { getSelections } from "../api/sessionStorage";
 

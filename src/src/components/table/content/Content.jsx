@@ -23,7 +23,8 @@ export default function ListManager() {
           marginTop: "1rem",
           fontSize: "1.1rem"
         }}>
-          <p style={{textAlign:"center"}}>Esta tabla no está disponible en este momento</p>
+          <p style={{textAlign:"center"}}>No se pudo cargar esta tabla</p>
+          <p style={{textAlign:"center"}}>Por favor, verifique su conexión a internet</p>
           <p style={{textAlign:"center"}}>Disculpe las molestias</p>
         </div>
       : table === undefined ?

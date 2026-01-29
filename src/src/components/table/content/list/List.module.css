@@ -4,6 +4,13 @@
     margin: 2vw;
 }
 
+.element {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: .2rem 0rem;
+}
+
 .element_container {
     margin-bottom: 1.3rem;
 }
@@ -17,11 +24,15 @@
     font-weight: bold;
 }
 
-.element_prices {
-    margin-left: 3rem;
+.element_header {
+    font-weight: bold;
 }
 
-.element_selected {
+.element_prices {
+    margin-inline: 1.2rem;
+}
+
+.element_selected p {
     color: #262dbc;
     font-weight: bold;
     text-decoration: underline;

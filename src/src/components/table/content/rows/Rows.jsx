@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import styles from "./Rows.module.css"
 import Cell from './Cell'
-import Row from './Row'
+import { LongRow, EmptyRow } from './Row'
 
 
 const templateColumns = columns => {
@@ -15,16 +15,46 @@ const parseJsxRows = (table) => {
     const cells = [];
     let key = Number(table.rows.length) + 1;
     table.rows.forEach((row, i) => {
-        if (row.length > 1) {
+        if (table.isLongRow(i)) {
+            key ++
+            cells.push(
+                <LongRow 
+                    key={key} 
+                    content={row[0]} 
+                    row={1} 
+                    columns={table.columns.length}
+                />
+            )
+        }
+        else if (table.isEmptyRow(i)) {
+            key +=2
+            cells.push(
+                <EmptyRow
+                    key={key}
+                    k={key}
+                    row={i} 
+                    name={row[0]} 
+                    content={row[1]} 
+                    header={table.columns[1]} 
+                    columns={table.columns.length}
+                />
+            )
+        }
+        else {
             const name = row[0]
             row.forEach((content, k) => { key ++;
                 const header = table.columns[k]
                 const id = k != 0 ? `${i}-${k}` : undefined
-                cells.push(<Cell key={key} id={id} header={header} name={name} content={content}/>)
+                cells.push(
+                    <Cell 
+                        key={key} 
+                        id={id} 
+                        header={header} 
+                        name={name} 
+                        content={content}
+                    />
+                )
             })
-        } else {
-            key ++
-            cells.push(<Row key={key} content={row[0]} row={1} columns={table.columns.length - row.length + 1}/>)
         }
     })
     return cells;
@@ -45,6 +75,7 @@ export default function Rows({table}) {
     const [ headers , setHeaders ] = useState()
 
     useEffect(() => { 
+        console.log("Tabla:", table)
         if (table != undefined && table != null) {
             setHeaders(parseJsxHeaders(table.columns))
             setRows(parseJsxRows(table))

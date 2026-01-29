@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect, useRef } from "react";
 
-import fetchTable from "../api/dataBase";
+import { fetchTable } from "../api/tables";
 
 import { links_uri, basename } from '../data/references.json'
 import { amountOfSelections } from "../api/sessionStorage";
@@ -8,6 +8,13 @@ const LINKS_URI = basename+links_uri
 
 export const TablesContext = createContext();
 
+/**
+ * Carga googlesheets.json el cual contiene los nombres de 
+ * las tablas del GoogleSheets, así como de la ubicación en
+ * el árbol de tabs del website.
+ * Una vez cargado, se selecciona la primer tabla encontrada
+ * en el googlesheets.json
+ */
 export function TablesContextProvider(props) {
 
     const initialized = useRef(false);
@@ -28,7 +35,6 @@ export function TablesContextProvider(props) {
         .then(data => data.json())
         .then(json => setRoutes(json))
         .catch(err => setRoutes(null))
-      
     }, []);
 
     const setRoutes = json => {
@@ -85,6 +91,11 @@ const isJSON = res => {
   else throw new Error("Invalid JSON or not found")
 }
 
+/**
+ * Busca el primer string dentro de un árbol de json
+ * @param {Record<string, any>} json árbol de tablas de GoogleSheets
+ * @returns 
+ */
 const defaultTable = json => {
   function recorrer(obj, ruta = []) {
     for (const key in obj) {

@@ -1,0 +1,1 @@
+export { default as fetchTable } from './handler/selectTableHandler'

@@ -8,7 +8,13 @@ const parseJsxElements = (elements) => {
         lines.push(
             <div key={i} className={styles.element_container}>
                 <p className={styles.element_name}>{element[0]}</p>
-                <div className={styles.element_prices}>{parseJsxPrices(elements.columns, element, i)}</div>
+                <div className={styles.element_prices}>{
+                    parseJsxPrices(
+                        elements.columns, 
+                        element, 
+                        i
+                    )}
+                </div>
                 <hr style={{marginTop: '1rem'}}/>
             </div>
         )
@@ -16,13 +22,20 @@ const parseJsxElements = (elements) => {
     return lines;
 }
 
-const parseJsxPrices = (headers, prices, k) => {
+const parseJsxPrices = (headers, prices, row) => {
     const vars = []
     const name = prices[0]
     for (const i in prices) {
         const value = prices[i]
         if (i != 0) vars.push( // name omited
-            <ListItem key={i} name={name} id={`${k}-${i}`} header={headers[i]} price={value}/>
+            <ListItem 
+                key={i} 
+                name={name} 
+                row={row}
+                id={`${row}-${i}`} 
+                header={headers[i]} 
+                price={value}
+            />
         )
     }
     return vars;

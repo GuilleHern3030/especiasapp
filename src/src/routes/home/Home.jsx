@@ -28,24 +28,28 @@ export default function Home() {
             <Link to="/about"> Nosotros </Link>
             <Link to="/contact"> Contacto </Link>
         </Header>
-        
+
         <FloatingButton/>
 
-        <div className={styles.logo}>
-            <img src={logo}/>
-        </div>
+        <main>
 
-        { selections > 0 ? <ShoppingCart to="/ticket" onClick={() => window.scrollTo({top:0})}>Ver ticket</ShoppingCart> : null }
-        
-        
-        <div className={styles.table}> <Table/> </div>
-        
-        { selections === true ? <div className={styles.ticketbutton}><Link to="/ticket" onClick={() => window.scrollTo({top:0})}>Ver ticket</Link></div> : <></> }
+            <h1 className={styles.title}>{title}</h1>
+            
+            <div className={styles.logo}>
+                <img src={logo}/>
+            </div>
 
-        <div style={{paddingTop:'16vw'}} />
+            { selections > 0 ? <ShoppingCart to="/ticket" onClick={() => window.scrollTo({top:0})}>Ver ticket</ShoppingCart> : null }
+            
+            <Table/>
+            
+            { selections === true ? <div className={styles.ticketbutton}><Link to="/ticket" onClick={() => window.scrollTo({top:0})}>Ver ticket</Link></div> : <></> }
+
+            <div style={{paddingTop:'16vw'}} />
+
+        </main>
 
         <Footer color='#000' backgroundColor='#b2afafff' copyrigth='Webpage created by GuilleNH' copyrightHref={credits}/>
-
 
     </>
 

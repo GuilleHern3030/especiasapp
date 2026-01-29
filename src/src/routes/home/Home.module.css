@@ -4,6 +4,7 @@
 
 .logo {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 1rem;
@@ -14,13 +15,12 @@
     width: var(--img-width);
 }
 
-.separator {
-    margin-top: 24px;
+.title {
+    display: none;
 }
 
-.table {
-    margin: 4px;
-    user-select: none;
+.separator {
+    margin-top: 24px;
 }
 
 .ticketbutton{

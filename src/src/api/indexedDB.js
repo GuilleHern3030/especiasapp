@@ -9,9 +9,7 @@ const addTableToIDB = (tableName, csv, IDBrequest=window.indexedDB.open(DB_NAME,
         const IDBtransaction = IDBrequest.result.transaction(TABLE_NAME, "readwrite")
         const objectStore = IDBtransaction.objectStore(TABLE_NAME)
         objectStore.put({ name: tableName, content: csv, savedAt: now.toISOString() })
-        IDBtransaction.addEventListener("complete", () => {
-            //console.log("CSV has been added to " + tableName)
-        })
+        IDBtransaction.addEventListener("complete", () => { })
     } catch(exception) {
         console.error(exception)
     }
@@ -29,7 +27,9 @@ const getTableFromIDB = (tableName, IDBrequest=window.indexedDB.open(DB_NAME, 1)
                     const now = new Date();
                     const saved = new Date(request.result.savedAt);
                     const diffMinutes = Math.floor((now - saved) / 60000);
-                    resolve(diffMinutes < maxminutesondb ? request.result.content : null)
+                    if (diffMinutes < maxminutesondb)
+                        resolve(request.result.content)
+                    else reject()
                 } else reject()
             }
         } catch (err) {

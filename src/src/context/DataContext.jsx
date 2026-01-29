@@ -4,6 +4,17 @@ const LINKS_URI = basename+data_uri
 
 export const DataContext = createContext();
 
+/**
+ * Carga data.json el cual contiene datos del dueño del website
+ * {
+ *      contactLink: link al whatsapp del local
+ *      contactNumber: número escrito del local
+ *      email: email del local
+ *      instagram: link del instagram del local
+ *      address: dirección escrita de la ubicación del local
+ *      googlemaps: link a la ubicación del local en google maps
+ * } 
+ */
 export function DataContextProvider(props) {
 
     const [ data, setData ] = useState()
