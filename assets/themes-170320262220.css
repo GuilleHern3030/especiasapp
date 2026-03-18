@@ -1,0 +1,64 @@
+:root {
+    --background-color: rgb(226, 223, 219);
+    --header-background-color: aliceblue;
+    --footer-background-color: rgb(14, 14, 14);
+    --article-background-color: rgb(176, 173, 173);
+    
+    --color: rgba(36, 36, 36);
+    --color-title: rgb(188, 38, 25);
+    --color-link: blue;
+    --color-filter: blue;
+    --color-striked: rgb(129, 126, 126);
+    --color-gray: rgba(109, 107, 107, 0.781);
+    --color-price: rgba(22, 22, 22);
+    --color-discount: rgb(40, 129, 32);
+    --color-article-buy: rgb(233, 225, 225);
+    --color-ticket: rgb(50, 48, 48);
+
+    --tab-background-selected: rgb(169, 159, 159);
+    --tab-background-branched: rgb(169, 159, 159);
+    --tab-foreground-branched: rgb(37, 20, 187);
+    --tab-foreground: rgb(24, 24, 24);
+    --tab-background: blanchedalmond;
+
+    --table-header-background: rgb(171, 166, 119);
+    --table-longcell-background: rgb(199, 195, 156);
+    --table-background: rgb(247, 247, 246);
+
+    --cell-border: rgb(0, 0, 0);
+    --cell-selected: rgb(175, 175, 175);
+    --cell-hover: rgb(225, 225, 225);
+
+}
+
+.dark {
+    --background-color: rgb(18, 18, 18);
+    --header-background-color: rgb(10, 10, 10);
+    --footer-background-color: rgb(8, 8, 8);
+    --article-background-color: rgb(44, 43, 43);
+    
+    --color: rgb(239, 239, 239);
+    --color-title: rgb(218, 27, 27);
+    --color-link: rgb(57, 57, 144);
+    --color-filter: rgb(87, 149, 214);
+    --color-striked: rgb(94, 91, 91);
+    --color-gray: rgba(131, 131, 131, 0.916);
+    --color-price: rgb(3, 55, 12);
+    --color-discount: rgb(52, 165, 42);
+    --color-article-buy: rgb(20, 20, 20);
+    --color-ticket: rgb(50, 48, 48);
+
+    --tab-background-selected: rgb(70, 70, 70);
+    --tab-background-branched: rgb(70, 70, 70);
+    --tab-foreground-branched: rgb(101, 189, 244);
+    --tab-foreground: rgb(215, 209, 209);
+    --tab-background: rgb(35, 35, 35);
+
+    --table-header-background: rgb(99, 96, 67);
+    --table-longcell-background: rgb(114, 111, 90);
+    --table-background: rgb(59, 59, 56);
+
+    --cell-border: rgb(0, 0, 0);
+    --cell-selected: rgb(31, 31, 31);
+    --cell-hover: rgb(83, 83, 83);
+}
