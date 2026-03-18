@@ -1,0 +1,18 @@
+{
+    "web-title": "Cenit Especias",
+    "owner": "CenitEspecias",
+    "contactlink": "https://wa.me/541179049854",
+    "contactNumber": "1179049854",
+    "email": "cenitespecias@gmail.com",
+    "instagram": "https://www.instagram.com/cenitespecias/",
+    "direction": "Lanus",
+    "location": "Buenos Aires",
+    "country": "Argentina",
+    "coinSymbol": "$",
+    "decimals": 2,
+    "decimalSeparator": ",",
+    "thousandSeparator": ".",
+    "canSelectMoreThanOne": false,
+    "fees": 0,
+    "googlemaps": "https://maps.app.goo.gl/xDdiWKQ7Jd2t49pH6"
+}

@@ -1,0 +1,14 @@
+{
+    "tablesTree": {
+        "Especias": {
+            "Por mayor": {
+                "Test1": "",
+                "Test2": "Especias",
+                "Test3": ""
+            },
+            "Por menor": "Error"
+        },
+        "Cereales": "Cereales",
+        "Hierbas": "Hierbas"
+    }
+}
