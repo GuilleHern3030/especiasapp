@@ -12,12 +12,12 @@ window.__APP_CONFIG__ = {
   "localTables": "/assets/tables.json",
   "usersCanSignIn": false,
   "usersCanUseShoppingCart": true,
-  "usersCanSearch": true,
+  "usersCanSearch": false,
   "usersCanBuy": false,
   "usersCanConsult": true,
   "googleSheetsApiKey": "AIzaSyD9yEoRR17TihSnABVC-_VcIVT2dcCydUg",
   "googleSheetsId": "1O_kEtHXDuQxAvoQnK6t-rG6zP7A3jSdI9yx4SsBSdEI",
-  "googleSheetsConfigId": "",
+  "googleSheetsConfigId": "1O_kEtHXDuQxAvoQnK6t-rG6zP7A3jSdI9yx4SsBSdEI",
   "googleSheetsName": "sheet",
   "googleClientId": "164682043545-n2p5pgj7u4rf53iiajr8tu37t8jqkh0j.apps.googleusercontent.com",
   "exportLocalFile": true,
@@ -36,6 +36,6 @@ window.__APP_CONFIG__ = {
     "jpeg"
   ],
   "apiUrl": "https://api-cenit.guillenh.com",
-  "origin": "https://cenit.pages.dev",
+  "origin": "https://cenitespecias.pages.dev",
   "webTitle": "Cenit Especias"
 }
