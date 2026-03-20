@@ -1,5 +1,5 @@
 window.__APP_CONFIG__ = {
-  "loadFromLocalStorage": false,
+  "loadFromLocalStorage": true,
   "loadFromGoogleSheets": false,
   "loadFromMultipleGoogleSheets": true,
   "loadFromBackend": false,
