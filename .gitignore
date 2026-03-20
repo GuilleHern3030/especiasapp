@@ -27,3 +27,4 @@ dist-ssr
 
 # NodeJS
 backend.cjs
+./assets/pull.json

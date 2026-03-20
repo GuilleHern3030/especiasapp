@@ -12,6 +12,7 @@
     "decimals": 2,
     "decimalSeparator": ",",
     "thousandSeparator": ".",
+    "clientThowsandSeparator": ".",
     "canSelectMoreThanOne": false,
     "fees": 0,
     "googlemaps": "https://maps.app.goo.gl/xDdiWKQ7Jd2t49pH6"
