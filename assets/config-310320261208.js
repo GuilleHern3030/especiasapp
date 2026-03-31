@@ -19,7 +19,7 @@ window.__APP_CONFIG__ = {
   "googleSheetsId": "1O_kEtHXDuQxAvoQnK6t-rG6zP7A3jSdI9yx4SsBSdEI",
   "googleSheetsConfigId": "1O_kEtHXDuQxAvoQnK6t-rG6zP7A3jSdI9yx4SsBSdEI",
   "googleSheetsName": "sheet",
-  "googleClientId": "164682043545-n2p5pgj7u4rf53iiajr8tu37t8jqkh0j.apps.googleusercontent.com",
+  "googleClientId": "433123137921-qth72v21kjpb3hsg2qphk6j0brfrkohi.apps.googleusercontent.com",
   "exportLocalFile": true,
   "maxMessageSize": 3000,
   "apiUrl": "https://api-cenit.guillenh.com",
