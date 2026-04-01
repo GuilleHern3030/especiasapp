@@ -26,6 +26,7 @@ dist-ssr
 *.bat
 
 # NodeJS
+instructions.md
 backend.cjs
 assets/pull.json
 CNAME
