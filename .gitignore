@@ -27,6 +27,5 @@ dist-ssr
 
 # NodeJS
 backend.cjs
-./assets/pull.json
 assets/pull.json
 CNAME
